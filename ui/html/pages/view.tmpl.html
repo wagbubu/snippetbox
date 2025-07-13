@@ -1,0 +1,20 @@
+{{ define "title" }}View{{ end }}
+{{ define "main" }}
+  {{ with .Snippet }}
+    <div class="bg-white border-1 border-zinc-200">
+      <div
+        class="p-4 bg-zinc-100 border-b-1 border-zinc-200 flex justify-between w-full"
+      >
+        <strong class="text-zinc-800">{{ .Title }}</strong>
+        <span class="text-zinc-500">#{{ .ID }}</span>
+      </div>
+      <pre class="p-4"><code>{{ .Content }}</code></pre>
+      <div
+        class="text-zinc-500 p-4 bg-zinc-100 border-b-1 border-zinc-200 flex justify-between w-full"
+      >
+        <time>Created: {{ .Created.Format "January 2, 2006" }}</time>
+        <time>Expires: {{ .Expires.Format "January 2, 2006" }}</time>
+      </div>
+    </div>
+  {{ end }}
+{{ end }}
