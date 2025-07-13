@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"net/http"
 	"runtime/debug"
+	"time"
 )
 
 // The serverError helper writes an error message and stack trace to the errorLog,
@@ -56,4 +57,8 @@ func (app *application) render(w http.ResponseWriter, status int, page string, d
 
 	//write the contents of buffer to http.ResponseWriter
 	buf.WriteTo(w)
+}
+
+func (app *application) newTemplateData() *templateData {
+	return &templateData{CurrentYear: time.Now().Year()}
 }
