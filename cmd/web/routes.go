@@ -2,19 +2,17 @@ package main
 
 import (
 	"net/http"
-
-	"github.com/wagbubu/snippetbox/middlewares"
 )
 
-func (app *application) routes() *http.ServeMux {
+func (app *application) routes() http.Handler {
 	mux := http.NewServeMux()
 
-	fileServer := http.FileServer(middlewares.NeuteredFileSystem{Fs: http.Dir("./ui/static/")})
+	fileServer := http.FileServer(neuteredFileSystem{Fs: http.Dir("./ui/static/")})
 
 	mux.HandleFunc("/", app.home)
 	mux.Handle("/static/", http.StripPrefix("/static", fileServer))
 	mux.HandleFunc("/snippet/view", app.snippetView)
 	mux.HandleFunc("/snippet/create", app.snippetCreate)
 
-	return mux
+	return app.recoverPanic((app.logRequest(secureHeaders(mux))))
 }

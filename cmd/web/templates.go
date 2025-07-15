@@ -3,6 +3,7 @@ package main
 import (
 	"html/template"
 	"path/filepath"
+	"time"
 
 	"github.com/wagbubu/snippetbox/internal/models"
 )
@@ -11,6 +12,14 @@ type templateData struct {
 	CurrentYear int
 	Snippet     *models.Snippet
 	Snippets    []*models.Snippet
+}
+
+func humanDate(t time.Time) string {
+	return t.Format("02 Jan 2006 at 3:04 PM")
+}
+
+var functions = template.FuncMap{
+	"humanDate": humanDate,
 }
 
 func newTemplateCache() (map[string]*template.Template, error) {
@@ -33,7 +42,7 @@ func newTemplateCache() (map[string]*template.Template, error) {
 
 		// Create a slice containing the filepaths for our base template, any
 		// partials and the page.
-		ts, err := template.ParseFiles("./ui/html/base.tmpl.html")
+		ts, err := template.New(name).Funcs(functions).ParseFiles("./ui/html/base.tmpl.html")
 		if err != nil {
 			return nil, err
 		}

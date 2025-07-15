@@ -12,8 +12,8 @@
       <div
         class="text-zinc-500 p-4 bg-zinc-100 border-b-1 border-zinc-200 flex justify-between w-full"
       >
-        <time>Created: {{ .Created.Format "January 2, 2006" }}</time>
-        <time>Expires: {{ .Expires.Format "January 2, 2006" }}</time>
+        <time>Created: {{ humanDate .Created }}</time>
+        <time>Expires: {{ humanDate .Expires }}</time>
       </div>
     </div>
   {{ end }}
