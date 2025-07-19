@@ -24,6 +24,9 @@
       </header>
       {{ template "nav" . }}
       <main class="max-w-6xl flex-1 mx-auto w-full">
+        {{ with .Flash }}
+          <div class="flash">{{ . }}</div>
+        {{ end }}
         {{ template "main" . }}
       </main>
       <footer class="bg-slate-500">
