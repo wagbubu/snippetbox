@@ -66,7 +66,7 @@ func (app *application) newTemplateData() *templateData {
 	return &templateData{CurrentYear: time.Now().Year()}
 }
 
-func (app *application) decodePostForm(w http.ResponseWriter, r *http.Request, dst any) error {
+func (app *application) decodePostForm(r *http.Request, dst any) error {
 	err := r.ParseForm()
 	if err != nil {
 		return err
