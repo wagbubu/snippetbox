@@ -93,3 +93,23 @@ func (app *application) snippetCreateGet(w http.ResponseWriter, r *http.Request)
 	}
 	app.render(w, http.StatusOK, "create.tmpl.html", data)
 }
+
+func (app *application) userSignup(w http.ResponseWriter, r *http.Request) {
+	fmt.Fprint(w, "user signup page")
+}
+
+func (app *application) userSignupPost(w http.ResponseWriter, r *http.Request) {
+	fmt.Fprint(w, "create new user")
+}
+
+func (app *application) userLogin(w http.ResponseWriter, r *http.Request) {
+	fmt.Fprint(w, "user login page")
+}
+
+func (app *application) userLoginPost(w http.ResponseWriter, r *http.Request) {
+	fmt.Fprint(w, "log in user")
+}
+
+func (app *application) userLogoutPost(w http.ResponseWriter, r *http.Request) {
+	fmt.Fprint(w, "log out user")
+}
