@@ -17,6 +17,10 @@ func (v *Validator) Valid() bool {
 	return len(v.FieldErrors) == 0 && len(v.NonFieldErrors) == 0
 }
 
+func (v *Validator) AddNonFieldError(message string) {
+	v.NonFieldErrors = append(v.NonFieldErrors, message)
+}
+
 func (v *Validator) AddFieldError(key, message string) {
 	if v.FieldErrors == nil {
 		v.FieldErrors = make(map[string]string)
